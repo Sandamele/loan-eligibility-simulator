@@ -24,7 +24,7 @@ The easiest way to get the simulator up and running is using Docker, which ensur
 ### Installation & Deployment
 #### Clone the repository:
 ```bash 
-    git clone https://github.com/Sandamele/loan-eligibility-simulator]
+    git clone https://github.com/Sandamele/loan-eligibility-simulator
     cd loan-eligibility-simulator
 ```
 #### Run docker 
