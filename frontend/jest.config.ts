@@ -16,6 +16,12 @@ const config: Config = {
   testPathIgnorePatterns: ["<rootDir>/node_modules/"],
   verbose: true,
   moduleDirectories: [...defaults.moduleDirectories, "bower_components"],
+  testMatch: ["**/__tests__/**/*.test.{ts,tsx}"],
+  globals: {
+    "ts-jest": {
+      useESM: true,
+    },
+  },
 };
 
 export default config;

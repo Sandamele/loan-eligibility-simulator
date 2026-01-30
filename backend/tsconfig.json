@@ -1,20 +1,13 @@
 {
   "compilerOptions": {
+    "module": "ESNext",
     "target": "ES2020",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-
-    "rootDir": "./src",
-    "outDir": "./dist",
-
-    "strict": true,
-
+    "moduleResolution": "Node",
+    "outDir": "dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    "strict": true,
     "skipLibCheck": true,
-
-    "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true,
-    "types": ["jest"],
   },
+  "include": ["src", "__tests__"],
 }

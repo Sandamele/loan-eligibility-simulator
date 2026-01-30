@@ -1,0 +1,8 @@
+node_modules
+dist
+.vscode
+*.log
+*.lock
+.git
+.env
+.DS_Store
