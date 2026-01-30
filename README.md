@@ -7,13 +7,14 @@ The **Loan Eligibility Simulator** is a customer-facing tool that provides insta
 ## Folder Structure
 The project is organized into a decoupled architecture, separating the client-side interface from the server-side logic.
 
+```bash
 loan-eligibility-simulator/
 ├── backend/            # API services and business logic
 ├── frontend/           # User interface and client-side state
 ├── .gitignore          # Version control exclusion rules
 ├── docker-compose.yml  # Container orchestration
 └── README.md           # Project documentation
-
+```
 ## Getting Started
 The easiest way to get the simulator up and running is using Docker, which ensures the environment is consistent across all machines.
 
@@ -24,12 +25,12 @@ The easiest way to get the simulator up and running is using Docker, which ensur
 ### Installation & Deployment
 #### Clone the repository:
 ```bash 
-    git clone https://github.com/Sandamele/loan-eligibility-simulator
-    cd loan-eligibility-simulator
+git clone https://github.com/Sandamele/loan-eligibility-simulator
+cd loan-eligibility-simulator
 ```
 #### Run docker 
 ```bash
-    docker-compose up -d
+docker-compose up -d
 ```
 ## Access & Endpoints
 | Service   | URL                                 | Port Mapping |
@@ -38,6 +39,6 @@ The easiest way to get the simulator up and running is using Docker, which ensur
 | Backend   | [http://localhost:1337](http://localhost:1337) | 1337:1337   |
 
 ## Technology Stack
-Frontend: Vite, React, Typescript, Jest
-Backend: Node.js, Typescript, Jest
-Infrastructure: Docker, Docker Compose
+- Frontend: Vite, React, Typescript, Jest
+- Backend: Node.js, Typescript, Jest
+- Infrastructure: Docker, Docker Compose
