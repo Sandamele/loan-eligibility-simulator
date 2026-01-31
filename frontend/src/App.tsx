@@ -1,9 +1,9 @@
 import "./App.css";
-
+import StepperForm from "./components/stepperForm/StepperForm";
 function App() {
   return (
     <>
-      <h1 className="text-4xl font-bold">Hello World</h1>
+      <StepperForm />
     </>
   );
 }
