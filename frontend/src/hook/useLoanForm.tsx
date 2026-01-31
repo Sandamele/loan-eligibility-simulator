@@ -1,6 +1,7 @@
 import { financialFormSchema } from "@/schemas/financialForm.schema";
 import { loanDetailsFormSchema } from "@/schemas/loanDetailsForm.schema";
 import { personalFormSchema } from "@/schemas/personalForm.schema";
+import type { StepperFormikValuesTypes } from "@/types/stepperFormikTypes";
 import { useFormik } from "formik";
 import { useState } from "react";
 
@@ -11,18 +12,18 @@ export const useLoanForm = (initialStep: number, stepLength: number) => {
     loanDetailsFormSchema,
   ];
   const [currentStep, setCurrentStep] = useState(initialStep);
-  const formik = useFormik({
+  const formik = useFormik<StepperFormikValuesTypes>({
     initialValues: {
       personal: {
-        age: 33,
+        age: "",
         employmentDuration: "",
-        employmentStatus: "unemployed",
+        employmentStatus: "",
       },
       financial: {
-        monthlyIncome: 5000,
-        monthlyExpenses: 0,
+        monthlyIncome: "",
+        monthlyExpenses: "",
         existingDebt: 0,
-        creditScore: 300,
+        creditScore: "",
       },
       loanDetails: {
         loanProduct: "",

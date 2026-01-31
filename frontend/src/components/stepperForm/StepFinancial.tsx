@@ -1,11 +1,12 @@
+import type { StepperFormikProps } from "@/types/stepperFormikTypes";
 import { Card, CardContent } from "../ui/card";
-import { FormGroup } from "../ui/FormGroup";
+import { FormGroup } from "../ui/formGroup";
 import { InputWithIcon } from "../ui/inputWithIcon";
 import { RandIcon } from "../ui/randIcon";
 import { FormHeader } from "./FormHeader";
 
 import { FaRegChartBar } from "react-icons/fa";
-export const StepFinancial = ({ formik }) => {
+export const StepFinancial = ({ formik }: StepperFormikProps) => {
   return (
     <Card>
       <CardContent>

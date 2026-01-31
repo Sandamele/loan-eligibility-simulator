@@ -3,7 +3,7 @@ import { IoHomeOutline } from "react-icons/io5";
 import { FaCarAlt } from "react-icons/fa";
 import { Card, CardContent } from "../ui/card";
 import { FormHeader } from "./FormHeader";
-import { FormGroup } from "../ui/FormGroup";
+import { FormGroup } from "../ui/formGroup";
 import { InputWithIcon } from "../ui/inputWithIcon";
 import { SelectableCardGroup } from "./SelectableCardGroup";
 import { RandIcon } from "../ui/randIcon";
@@ -12,8 +12,9 @@ import { Dropdown } from "../ui/dropdown";
 import { AiOutlineCalendar } from "react-icons/ai";
 import { formatMoney } from "@/lib/formatMoney";
 import { useState } from "react";
+import type { StepperFormikProps } from "@/types/stepperFormikTypes";
 
-export const StepLoanDetails = ({ formik }) => {
+export const StepLoanDetails = ({ formik }: StepperFormikProps) => {
   const loanProducts = [
     {
       id: "personal_loan",

@@ -1,5 +1,4 @@
 import { Card, CardContent } from "../ui/card";
-import { FormGroup } from "../ui/FormGroup";
 import { InputWithIcon } from "../ui/inputWithIcon";
 import { CiCalendarDate } from "react-icons/ci";
 import { IoTimeOutline } from "react-icons/io5";
@@ -9,8 +8,10 @@ import { FiUser } from "react-icons/fi";
 import { GiPiggyBank } from "react-icons/gi";
 import { FormHeader } from "./FormHeader";
 import { SelectableCardGroup } from "./SelectableCardGroup";
+import { FormGroup } from "../ui/formGroup";
+import type { StepperFormikProps } from "@/types/stepperFormikTypes";
 
-export const StepPersonal = ({ formik }) => {
+export const StepPersonal = ({ formik }: StepperFormikProps) => {
   const employmentStatuses = [
     { id: "employed", label: "Employed", icon: <BsSuitcaseLg /> },
     { id: "self_employed", label: "Self Employed", icon: <LuBuilding2 /> },
@@ -47,7 +48,6 @@ export const StepPersonal = ({ formik }) => {
               name="personal.age"
               id="personal.age"
               onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
             />
           </FormGroup>
           <FormGroup
@@ -64,7 +64,6 @@ export const StepPersonal = ({ formik }) => {
               name="personal.employmentDuration"
               id="personal.employmentDuration"
               onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
               disabled={
                 employmentStatus !== "employed" &&
                 employmentStatus !== "self_employed"
