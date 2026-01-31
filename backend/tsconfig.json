@@ -2,12 +2,13 @@
   "compilerOptions": {
     "module": "ESNext",
     "target": "ES2020",
-    "moduleResolution": "Node",
+    "moduleResolution": "bundler", // Or "NodeNext" for stricter ESM compliance
     "outDir": "dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
+    "rootDir": "src", // Helps keep your 'dist' folder clean
   },
   "include": ["src", "__tests__"],
 }
