@@ -6,13 +6,11 @@ const config: Config = {
   transform: {
     "^.+\\.(ts|tsx)$": "babel-jest",
   },
-
   moduleNameMapper: {
-    "\\.(css|less|scss|sass)$": "identity-obj-proxy",
+    "^@/(.*)$": "<rootDir>/src/$1",
   },
 
-  setupFilesAfterEnv: ["<rootDir>/src/setupTests.ts"],
-
+  setupFilesAfterEnv: ["<rootDir>/src/jest.setup.ts"],
   testPathIgnorePatterns: ["<rootDir>/node_modules/"],
   verbose: true,
   moduleDirectories: [...defaults.moduleDirectories, "bower_components"],

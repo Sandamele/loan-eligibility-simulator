@@ -39,6 +39,6 @@ export const loanDetailsFormSchema = Yup.object({
             });
       })
       .required("Preferred term required"),
-    loanProduct: Yup.string().required("Choose a loan product"),
+    loanType: Yup.string().required("Choose a loan product"),
   }),
 });

@@ -1,6 +1,3 @@
-import { CiMoneyBill } from "react-icons/ci";
-import { IoHomeOutline } from "react-icons/io5";
-import { FaCarAlt } from "react-icons/fa";
 import { Card, CardContent } from "../ui/card";
 import { FormHeader } from "./FormHeader";
 import { FormGroup } from "../ui/formGroup";
@@ -13,55 +10,46 @@ import { AiOutlineCalendar } from "react-icons/ai";
 import { formatMoney } from "@/lib/formatMoney";
 import { useState } from "react";
 import type { StepperFormikProps } from "@/types/stepperFormikTypes";
+import { useFetch } from "@/hook/useFetch";
+import type {
+  LoanProductsResponseType,
+  LoanProductType,
+} from "@/types/loanProductType";
 
 export const StepLoanDetails = ({ formik }: StepperFormikProps) => {
-  const loanProducts = [
-    {
-      id: "personal_loan",
-      label: "Personal Loan",
-      icon: <CiMoneyBill />,
-      minAmount: 5000.0,
-      maxAmount: 300000.0,
-      min: 6,
-      max: 60,
-    },
-    {
-      id: "car_loan",
-      label: "Car Loan",
-      icon: <IoHomeOutline />,
-      minAmount: 50000.0,
-      maxAmount: 1500000.0,
-      min: 12,
-      max: 72,
-    },
-    {
-      id: "home_loan",
-      label: "Home Loan",
-      icon: <FaCarAlt />,
-      minAmount: 150000.0,
-      maxAmount: 3500000.0,
-      min: 24,
-      max: 240,
-    },
-  ];
+  const { data, loading } =
+    useFetch<LoanProductsResponseType>("loans/products");
   const [minLoanAmount, setMinLoanAmount] = useState(0);
   const [maxLoanAmount, setMaxLoanAmount] = useState(0);
+  const [productPurposes, setProductPursoe] = useState<
+    { value: string; label: string }[]
+  >([]);
   const handleSelect = (id: string) => {
-    const product = loanProducts.find((loanProduct) => loanProduct.id === id);
-    formik.setFieldValue("loanDetails.loanProduct", id);
+    const product = data?.products.find(
+      (loanProduct: LoanProductType) => loanProduct.id === id,
+    );
+    formik.setFieldValue("loanDetails.loanType", id);
     formik.setFieldValue("loanDetails.minLoanAmount", product?.minAmount);
     formik.setFieldValue("loanDetails.maxLoanAmount", product?.maxAmount);
-    formik.setFieldValue("loanDetails.minTerm", product?.min);
-    formik.setFieldValue("loanDetails.maxTerm", product?.max);
+    formik.setFieldValue("loanDetails.minTerm", product?.minTerm);
+    formik.setFieldValue("loanDetails.maxTerm", product?.maxTerm);
     setMaxLoanAmount(product?.maxAmount || 0);
     setMinLoanAmount(product?.minAmount || 0);
+
+    setProductPursoe(
+      product?.purposes?.map((purpose: string) => ({
+        value: purpose,
+        label: purpose
+          .split("_")
+          .map(
+            (word: string) =>
+              word.charAt(0).toUpperCase() + word.slice(1).toLowerCase(),
+          )
+          .join(" "),
+      })) ?? [],
+    );
   };
-  const Purpose = [
-    { value: "6", label: "6 month" },
-    { value: "12", label: "12 month" },
-    { value: "24", label: "24 month" },
-    { value: "36", label: "36 month" },
-  ];
+
   return (
     <Card>
       <CardContent>
@@ -71,21 +59,26 @@ export const StepLoanDetails = ({ formik }: StepperFormikProps) => {
         />
         <FormGroup
           label="What type of loan?"
-          error={formik.errors.loanDetails?.loanProduct}
-          showError={formik.touched.loanDetails?.loanProduct}
+          error={formik.errors.loanDetails?.loanType}
+          showError={formik.touched.loanDetails?.loanType}
+          htmlFor="loanDetails.loanType"
         >
-          <SelectableCardGroup
-            items={loanProducts}
-            selectedId={formik.values.loanDetails.loanProduct}
-            onSelect={handleSelect}
-          />
+          {!loading ? (
+            <SelectableCardGroup
+              items={data?.products ?? []}
+              selectedId={formik.values.loanDetails.loanType}
+              onSelect={handleSelect}
+            />
+          ) : (
+            "Loading..."
+          )}
         </FormGroup>
         <div className="bg-slate-100 pt-6 px-6 rounded-xl border border-slate-200">
           <div className="flex flex-col md:flex-row md:items-center gap-4 mb-4">
             <IoCashOutline className="text-4xl bg-bright-blue text-white px-1 py-1 rounded-lg" />
             <div>
               <h3 className="font-semibold">Desired Loan Amount</h3>
-              {formik.values.loanDetails.loanProduct !== "" && (
+              {formik.values.loanDetails.loanType !== "" && (
                 <p className="text-sm text-slate-500">
                   Enter between {formatMoney(minLoanAmount, "R")} -{" "}
                   {formatMoney(maxLoanAmount, "R")}
@@ -94,8 +87,10 @@ export const StepLoanDetails = ({ formik }: StepperFormikProps) => {
             </div>
           </div>
           <FormGroup
+            label=""
             error={formik.errors.loanDetails?.requestedAmount}
             showError={formik.touched.loanDetails?.requestedAmount}
+            htmlFor="loanDetails.requestedAmount"
           >
             <InputWithIcon
               icon={<RandIcon className="text-lg text-slate-500" />}
@@ -104,15 +99,17 @@ export const StepLoanDetails = ({ formik }: StepperFormikProps) => {
               name="loanDetails.requestedAmount"
               value={formik.values.loanDetails.requestedAmount}
               onChange={formik.handleChange}
-              disabled={formik.values.loanDetails.loanProduct === ""}
+              disabled={formik.values.loanDetails.loanType === ""}
+              placeholder="Enter loan amount"
             />
           </FormGroup>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 mt-6 md:gap-4">
           <FormGroup
-            label="Preferred Term (months)"
+            label="Preferred Term"
             error={formik.errors.loanDetails?.loanTerm}
             showError={formik.touched.loanDetails?.loanTerm}
+            htmlFor="loanDetails.loanTerm"
           >
             <InputWithIcon
               icon={<AiOutlineCalendar />}
@@ -121,11 +118,12 @@ export const StepLoanDetails = ({ formik }: StepperFormikProps) => {
               name="loanDetails.loanTerm"
               value={formik.values.loanDetails.loanTerm}
               onChange={formik.handleChange}
-              disabled={formik.values.loanDetails.loanProduct === ""}
+              disabled={formik.values.loanDetails.loanType === ""}
+              placeholder="Enter loan term in months"
             />
           </FormGroup>
           <FormGroup label="Specific Purpose">
-            <Dropdown items={Purpose} placeholder="Select purpose" />
+            <Dropdown items={productPurposes} placeholder="Select purpose" />
           </FormGroup>
         </div>
       </CardContent>

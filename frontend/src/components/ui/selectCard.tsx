@@ -15,11 +15,13 @@ export const SelectCard = ({
       type="button"
       aria-pressed={selected}
     >
-      <div
-        className={`text-3xl px-2 py-2 rounded-lg mb-2 ${selected ? "bg-blue-100 text-bright-blue" : "bg-slate-100 text-slate-500"}`}
-      >
-        {icon}
-      </div>
+      {!!icon && (
+        <div
+          className={`text-3xl px-2 py-2 rounded-lg mb-2 ${selected ? "bg-blue-100 text-bright-blue" : "bg-slate-100 text-slate-500"}`}
+        >
+          {icon}
+        </div>
+      )}
       <p className={`font-medium ${selected ? "text-bright-blue" : ""}`}>
         {label}
       </p>

@@ -27,6 +27,7 @@ export const StepFinancial = ({ formik }: StepperFormikProps) => {
           <FormGroup
             error={formik.errors.financial?.monthlyIncome}
             showError={formik.touched.financial?.monthlyIncome}
+            htmlFor="financial.monthlyIncome"
           >
             <InputWithIcon
               icon={<RandIcon className="text-lg text-slate-500" />}
@@ -35,6 +36,7 @@ export const StepFinancial = ({ formik }: StepperFormikProps) => {
               name="financial.monthlyIncome"
               value={formik.values.financial.monthlyIncome}
               onChange={formik.handleChange}
+              placeholder="40000"
             />
           </FormGroup>
         </div>
@@ -43,6 +45,7 @@ export const StepFinancial = ({ formik }: StepperFormikProps) => {
             label="Monthly Expenses"
             error={formik.errors.financial?.monthlyExpenses}
             showError={formik.touched.financial?.monthlyExpenses}
+            htmlFor="financial.monthlyExpenses"
           >
             <InputWithIcon
               icon={<RandIcon className="text-lg text-slate-500" />}
@@ -51,9 +54,10 @@ export const StepFinancial = ({ formik }: StepperFormikProps) => {
               name="financial.monthlyExpenses"
               value={formik.values.financial.monthlyExpenses}
               onChange={formik.handleChange}
+              placeholder="2000"
             />
           </FormGroup>
-          <FormGroup label="Existing Debt Payments">
+          <FormGroup label="Existing Debt Payments" htmlFor="financial.existingDebt">
             <InputWithIcon
               icon={<RandIcon className="text-lg text-slate-500" />}
               alignIcon="inline-start"
@@ -61,6 +65,7 @@ export const StepFinancial = ({ formik }: StepperFormikProps) => {
               name="financial.existingDebt"
               value={formik.values.financial.existingDebt}
               onChange={formik.handleChange}
+              placeholder="3000"
             />
           </FormGroup>
         </div>
@@ -68,6 +73,7 @@ export const StepFinancial = ({ formik }: StepperFormikProps) => {
           label="Estimated Credit Score"
           error={formik.errors.financial?.creditScore}
           showError={formik.touched.financial?.creditScore}
+          htmlFor="financial.creditScore"
         >
           <InputWithIcon
             icon={<FaRegChartBar className="text-slate-500" />}
@@ -76,6 +82,7 @@ export const StepFinancial = ({ formik }: StepperFormikProps) => {
             name="financial.creditScore"
             value={formik.values.financial.creditScore}
             onChange={formik.handleChange}
+            placeholder="605"
           />
         </FormGroup>
       </CardContent>

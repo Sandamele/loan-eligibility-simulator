@@ -27,10 +27,16 @@ The easiest way to get the simulator up and running is using Docker, which ensur
 ```bash 
 git clone https://github.com/Sandamele/loan-eligibility-simulator
 cd loan-eligibility-simulator
+cd backend
+cp .env.example .env
+cd ../frontend
+cp .env.example .env
+cd ../
 ```
+
 #### Run docker 
 ```bash
-docker-compose up -d
+VITE_API_URL=http://localhost:1337 docker-compose up --build -d
 ```
 ## Access & Endpoints
 | Service   | URL                                 | Port Mapping |

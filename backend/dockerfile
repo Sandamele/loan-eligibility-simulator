@@ -5,6 +5,10 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 
+ARG NODE_ENV
+
+ENV NODE_ENV=$NODE_ENV
+
 RUN npm run build
 
 RUN npm test
@@ -18,4 +22,4 @@ RUN npm install --omit=dev
 COPY --from=builder /app/dist ./dist
 
 EXPOSE 1337
-CMD ["node", "dist/src/index.js"]
+CMD ["node", "dist/index.js"]

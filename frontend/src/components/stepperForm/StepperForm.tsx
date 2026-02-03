@@ -28,7 +28,7 @@ export default function StepperForm() {
     steps.length,
   );
   return (
-    <section className="bg-slate-100 h-screen px-5 md:px-10 lg:px-50 py-10 overflow-scroll">
+    <section>
       <PremiumHeader />
       <ProgressStepper steps={steps} currentStep={currentStep} />
       <form onSubmit={formik.handleSubmit}>

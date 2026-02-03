@@ -13,10 +13,10 @@ import type { StepperFormikProps } from "@/types/stepperFormikTypes";
 
 export const StepPersonal = ({ formik }: StepperFormikProps) => {
   const employmentStatuses = [
-    { id: "employed", label: "Employed", icon: <BsSuitcaseLg /> },
-    { id: "self_employed", label: "Self Employed", icon: <LuBuilding2 /> },
-    { id: "unemployed", label: "Unemployed", icon: <FiUser /> },
-    { id: "retired", label: "Retired", icon: <GiPiggyBank /> },
+    { id: "employed", name: "Employed", icon: <BsSuitcaseLg /> },
+    { id: "self_employed", name: "Self Employed", icon: <LuBuilding2 /> },
+    { id: "unemployed", name: "Unemployed", icon: <FiUser /> },
+    { id: "retired", name: "Retired", icon: <GiPiggyBank /> },
   ];
   const handleSelect = (id: string) => {
     formik.setFieldValue("personal.employmentStatus", id);
@@ -29,6 +29,7 @@ export const StepPersonal = ({ formik }: StepperFormikProps) => {
   return (
     <Card>
       <CardContent>
+        URL:{import.meta.env.VITE_API_URL}
         <FormHeader
           title="Your profile"
           subTitle="Enter your details to simulate loan eligibility."
@@ -38,6 +39,7 @@ export const StepPersonal = ({ formik }: StepperFormikProps) => {
             label="Your age"
             error={formik.errors.personal?.age}
             showError={formik.touched.personal?.age}
+            htmlFor="personal.age"
           >
             <InputWithIcon
               icon={<CiCalendarDate />}
@@ -54,6 +56,7 @@ export const StepPersonal = ({ formik }: StepperFormikProps) => {
             label={employmentDurationLabel}
             error={formik.errors.personal?.employmentDuration}
             showError={formik.touched.personal?.employmentDuration}
+            htmlFor="personal.employmentDuration"
           >
             <InputWithIcon
               icon={<IoTimeOutline />}
@@ -75,6 +78,7 @@ export const StepPersonal = ({ formik }: StepperFormikProps) => {
           label="Employment Status"
           error={formik.errors.personal?.employmentStatus}
           showError={formik.touched.personal?.employmentStatus}
+          htmlFor="personal.employmentStatus"
         >
           <SelectableCardGroup
             items={employmentStatuses}

@@ -13,7 +13,7 @@ export type StepperFormikValuesTypes = {
     creditScore: number | string;
   };
   loanDetails: {
-    loanProduct: number | string;
+    loanType: number | string;
     requestedAmount: number | string;
     loanTerm: number | string;
     loanPurpose: number | string;

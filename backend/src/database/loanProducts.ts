@@ -1,0 +1,36 @@
+export const loanProducts = new Map();
+loanProducts.set("personal_loan", {
+  id: "personal_loan",
+  name: "Personal Loan",
+  description: "Flexible personal financing for various needs",
+  minAmount: 5000.0,
+  maxAmount: 300000.0,
+  minTerm: 6,
+  maxTerm: 60,
+  interestRateRange: {
+    min: 10.5,
+    max: 18.5,
+  },
+  purposes: [
+    "debt_consolidation",
+    "home_improvement",
+    "education",
+    "medical",
+    "other",
+  ],
+});
+
+loanProducts.set("vehicle_loan", {
+  id: "vehicle_loan",
+  name: "Vehicle Finance",
+  description: "Financing for new and used vehicles",
+  minAmount: 50000.0,
+  maxAmount: 1500000.0,
+  minTerm: 12,
+  maxTerm: 72,
+  interestRateRange: {
+    min: 8.5,
+    max: 15.0,
+  },
+  purposes: ["new_vehicle", "used_vehicle"],
+});

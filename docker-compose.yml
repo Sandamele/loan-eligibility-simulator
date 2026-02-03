@@ -1,23 +1,27 @@
 version: "3.9"
-
 services:
-  loan-frontend:
+  loan-frontend-v1:
     build:
       context: ./frontend
       dockerfile: dockerfile
+      args:
+        VITE_API_URL: ${VITE_API_URL}
     ports:
       - "5173:80"
-    volumes:
-      - ./frontend:/app
-      - /app/node_modules
+    env_file:
+      - ./frontend/.env
+    volumes: []
     environment:
       - NODE_ENV=production
-  loan-backend:
+
+  loan-backend-v1:
     build:
       context: ./backend
       dockerfile: dockerfile
     ports:
       - "1337:1337"
+    env_file:
+      - ./backend/.env
     volumes:
       - ./backend:/app
       - /app/node_modules

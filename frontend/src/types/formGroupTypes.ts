@@ -5,4 +5,5 @@ export type FormGroupType = {
   label?: string;
   error?: string;
   showError?: boolean;
+  htmlFor?: string;
 };

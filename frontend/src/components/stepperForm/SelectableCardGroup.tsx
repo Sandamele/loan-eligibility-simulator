@@ -12,7 +12,7 @@ export const SelectableCardGroup = ({
           <SelectCard
             key={item.id}
             id={item.id}
-            label={item.label}
+            label={item.name}
             icon={item.icon}
             onSelect={() => onSelect(item.id)}
             selected={selectedId === item.id}
